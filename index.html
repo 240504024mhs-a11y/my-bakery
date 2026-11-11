@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rumah Roti Kenanga – Roti dan kue segar dari oven tiap pagi</title>
+<meta name="description" content="Roti, kue, dan pastry yang dipanggang segar setiap pagi. Lihat menu dan pesan lewat WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#3A2112; --green-2:#5C381C; --butter:#FFD84D; --raspberry:#B4531A;
+  --crust:#6B4226; --flour:#FFF1BF; --paper:#FFFBEA; --line:#D9A93A;
+  --serif:'Cormorant Garamond',Georgia,serif; --sans:'Jost',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:#F7CD52 radial-gradient(rgba(107,66,38,.13) 2px,transparent 2.6px) 0 0/30px 30px;color:var(--green);line-height:1.65;font-size:17px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--raspberry);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* Awning + nav */
+.awning{height:44px;background:repeating-linear-gradient(90deg,var(--green) 0 40px,var(--flour) 40px 80px)}
+.scallop{height:20px;background:repeating-linear-gradient(90deg,var(--green) 0 40px,var(--flour) 40px 80px);
+  -webkit-mask:radial-gradient(circle at 20px 0,#000 19.5px,transparent 20px) repeat-x;mask:radial-gradient(circle at 20px 0,#000 19.5px,transparent 20px) repeat-x;
+  -webkit-mask-size:40px 20px;mask-size:40px 20px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0 8px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-size:30px;font-weight:700;text-decoration:none;letter-spacing:.01em}
+.brand small{display:block;font-family:var(--sans);font-size:13px;font-weight:400;color:var(--crust);letter-spacing:.04em}
+nav ul{display:flex;gap:26px;list-style:none;flex-wrap:wrap}
+nav ul a{text-decoration:none;font-weight:500;border-bottom:2px solid transparent;padding-bottom:2px}
+nav ul a:hover{border-color:var(--raspberry)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:center;padding:40px 0 48px}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,7vw,84px);line-height:1;font-weight:700;letter-spacing:-.01em}
+.hero p{margin:24px 0 32px;max-width:46ch;font-size:19px;color:var(--green-2)}
+.stage{position:relative;height:400px;cursor:grab;touch-action:pan-y;user-select:none}
+.stage:active{cursor:grabbing}
+.stage::before{content:"";position:absolute;inset:6% 4%;border-radius:50%;background:radial-gradient(circle,#FFF0A8 0%,rgba(255,240,168,.55) 45%,rgba(255,240,168,0) 72%)}
+.stage canvas{position:relative;width:100%;height:100%;display:block}
+.stage .hint{position:absolute;left:0;right:0;bottom:0;text-align:center;font-size:14px;color:var(--green-2)}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{display:inline-block;padding:14px 28px;border:2px solid var(--green);background:var(--green);color:var(--flour);font:500 16px var(--sans);text-decoration:none;cursor:pointer;border-radius:999px;transition:background .2s,color .2s}
+.btn:hover{background:var(--raspberry);border-color:var(--raspberry)}
+.btn.ghost{background:transparent;color:var(--green)}
+.btn.ghost:hover{background:var(--green);color:var(--flour);border-color:var(--green)}
+
+.board{background:var(--green);color:var(--butter);padding:34px 32px 30px;border:6px double var(--butter);outline:10px solid var(--green);outline-offset:-1px;margin:0 10px 84px}
+.board h2{font-family:var(--serif);font-size:30px;font-weight:600;text-align:center;margin-bottom:4px;color:var(--butter)}
+.board .sub{text-align:center;font-style:italic;font-family:var(--serif);font-size:19px;color:#F6E7B0;margin-bottom:20px}
+.board ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:0 28px}
+.board li{display:flex;flex-direction:column;gap:2px;padding:12px 0;border-top:1px dashed rgba(255,216,77,.45);font-size:17px}
+.board li b{font-family:var(--serif);font-size:22px;min-width:68px;color:var(--butter)}
+.board li span{color:#FFF1BF}
+
+/* Sections */
+section{padding:84px 0}
+.band{background:var(--green);color:var(--flour)}
+h2.title{font-family:var(--serif);font-size:clamp(34px,5vw,54px);line-height:1.05;font-weight:700;margin-bottom:12px}
+.lead{max-width:56ch;color:var(--crust);margin-bottom:36px}
+.band .lead{color:#F2DFA6}
+
+/* Menu */
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tab{padding:10px 22px;border:1.5px solid var(--green);background:transparent;color:var(--green);font:500 16px var(--sans);border-radius:999px;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{background:var(--green);color:var(--flour)}
+.tab:hover{background:var(--butter);border-color:var(--butter);color:var(--green)}
+.state{padding:40px 0;text-align:center;color:var(--green-2);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px}
+.card{background:var(--paper);border:1.5px solid var(--green);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translateY(-5px);box-shadow:7px 7px 0 var(--green)}
+.ph{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.ph.none{display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:72px;color:var(--butter);background:repeating-linear-gradient(45deg,var(--green) 0 14px,var(--green-2) 14px 28px)}
+.card .body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.badge{align-self:flex-start;background:var(--butter);color:var(--green);font-size:13px;font-weight:500;padding:1px 12px;border-radius:999px}
+.card h3{font-family:var(--serif);font-size:27px;line-height:1.1}
+.card p{color:var(--crust);font-size:15.5px;flex:1}
+.stok{font-size:14px;color:var(--green-2)}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:12px;border-top:1px dashed var(--line)}
+.price{font-family:var(--serif);font-size:25px;font-weight:700;color:var(--raspberry)}
+.btn.sm{padding:9px 18px;font-size:15px}
+.btn[disabled]{opacity:.5;cursor:not-allowed;background:var(--crust);border-color:var(--crust)}
+.fab{position:fixed;right:20px;bottom:20px;z-index:20;display:flex;align-items:center;gap:10px;background:var(--green);color:var(--butter);border:3px solid var(--butter);border-radius:999px;padding:12px 20px;font:500 16px var(--sans);cursor:pointer;box-shadow:0 6px 0 rgba(58,33,18,.35)}
+.fab:hover{background:var(--raspberry)}
+.fab b{background:var(--butter);color:var(--green);border-radius:999px;min-width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.drawer{position:fixed;inset:0;background:rgba(58,33,18,.6);z-index:40;display:none;justify-content:flex-end}
+.drawer.open{display:flex}
+.panel{background:var(--paper);width:100%;max-width:440px;height:100%;padding:24px;display:flex;flex-direction:column;overflow-y:auto;border-left:6px double var(--green)}
+.panel header{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--green);padding-bottom:12px}
+.panel header h3{font-family:var(--serif);font-size:30px}
+.panel header button{background:none;border:0;font-size:32px;cursor:pointer;color:var(--green)}
+#cart-items{flex:1;padding:12px 0}
+.ci{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px dotted var(--line)}
+.ci small{display:block;color:var(--crust)}
+.q{display:flex;align-items:center;gap:10px}
+.q button{border:1.5px solid var(--green);background:none;width:30px;height:30px;border-radius:50%;cursor:pointer;color:var(--green);font-size:18px}
+.q button:hover{background:var(--butter)}
+.total{display:flex;justify-content:space-between;font-family:var(--serif);font-size:28px;font-weight:700;margin:14px 0}
+.panel label{display:block;font-size:14px;font-weight:500;margin:10px 0 4px}
+.panel input,.panel textarea{width:100%;border:1.5px solid var(--green);background:#fff;padding:10px 12px;font:16px var(--sans);color:var(--green)}
+.panel .btn{width:100%;margin-top:16px;background:var(--raspberry);border-color:var(--raspberry)}
+.panel .btn:hover{background:var(--green);border-color:var(--green)}
+
+/* Story */
+.story{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.story p+p{margin-top:16px}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(28px,3.4vw,40px);line-height:1.2;color:var(--butter);border-left:4px solid var(--butter);padding-left:26px}
+.quote cite{display:block;margin-top:16px;font-family:var(--sans);font-style:normal;font-size:15px;color:#F2DFA6}
+
+/* Stage UI, trust, packs, moments */
+.stage-ui{display:flex;align-items:center;gap:14px;margin-top:10px}
+.stage-ui .cap{flex:1;text-align:center}
+.stage-ui h3{font-family:var(--serif);font-size:34px;line-height:1.1}
+.stage-ui p{color:var(--green-2);font-size:16px;margin-top:2px}
+.nav-btn{width:48px;height:48px;border-radius:50%;border:2px solid var(--green);background:var(--green);color:var(--butter);font-size:26px;cursor:pointer;transition:all .2s;flex:none}
+.nav-btn:hover{background:var(--raspberry);border-color:var(--raspberry);color:#fff}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(58,33,18,.3);transition:all .25s}
+.dots i.on{width:28px;border-radius:6px;background:var(--green)}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--green);border-bottom:2px solid var(--green);margin:0 0 56px}
+.trust div{padding:20px 22px;font-family:var(--serif);font-size:22px;font-weight:600;line-height:1.2}
+.trust div+div{border-left:2px solid var(--green)}
+.trust small{display:block;font-family:var(--sans);font-size:15px;font-weight:400;color:var(--green-2);margin-top:4px}
+.packs{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pack{background:var(--green);color:var(--flour);padding:30px 26px;display:flex;flex-direction:column;gap:10px;border-radius:4px;transition:transform .25s}
+.pack:hover{transform:translateY(-6px)}
+.pack h3{font-family:var(--serif);font-size:30px;color:var(--butter);line-height:1.1}
+.pack p{color:#F2DFA6;font-size:16px;flex:1}
+.pack .was{text-decoration:line-through;color:#d9bd72;font-size:15px}
+.pack .now{font-family:var(--serif);font-size:32px;font-weight:700;color:var(--butter)}
+.pack .btn{background:var(--butter);color:var(--green);border-color:var(--butter);text-align:center}
+.pack .btn:hover{background:var(--raspberry);border-color:var(--raspberry);color:#fff}
+.moments{list-style:none;border-left:2px solid var(--butter);padding-left:26px;display:grid;gap:22px}
+.moments li{position:relative}
+.moments li::before{content:"";position:absolute;left:-34px;top:9px;width:14px;height:14px;border-radius:50%;background:var(--butter);border:3px solid var(--green)}
+.moments b{font-family:var(--serif);font-size:26px;color:var(--butter);display:block;line-height:1.1}
+.moments span{color:#F2DFA6;font-size:16.5px}
+.sign{font-family:var(--serif);font-style:italic;font-size:30px;color:var(--butter);margin-top:22px}
+/* Visit */
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.hours{width:100%;border-collapse:collapse;margin-top:8px}
+.hours td{padding:11px 0;border-bottom:1px dotted rgba(255,241,191,.35)}
+.hours td:last-child{text-align:right;font-family:var(--serif);font-size:21px;color:var(--butter)}
+address{font-style:normal;margin-top:6px}
+footer.site{background:var(--green-2);color:#F2DFA6;text-align:center;padding:28px 24px;font-size:15px}
+
+@media (max-width:860px){
+  .hero,.story,.visit,.packs,.trust{grid-template-columns:1fr}
+  .trust div+div{border-left:0;border-top:2px solid var(--green)}
+  .hero{padding-top:32px}
+  .board ul{grid-template-columns:1fr 1fr}
+  section{padding:60px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="awning" aria-hidden="true"></div>
+<div class="scallop" aria-hidden="true"></div>
+
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#atas">Rumah Roti Kenanga<small>Toko roti dan kue keluarga</small></a>
+    <ul>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#paket">Paket hemat</a></li>
+      <li><a href="#cerita">Cerita kami</a></li>
+      <li><a href="#kunjungi">Kunjungi kami</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero" id="atas">
+    <div>
+      <h1>Aromanya sampai ke jalan, hangatnya sampai ke hati.</h1>
+      <p>Kami menguleni adonan sebelum subuh dan memanggangnya sepanjang pagi. Geser dan pilih yang kamu suka, kami siapkan sebelum kamu datang.</p>
+      <div class="btns">
+        <a class="btn" href="#menu">Pesan sekarang</a>
+        <a class="btn ghost" href="#kunjungi">Cari lokasi</a>
+      </div>
+    </div>
+    <div><div class="stage" id="stage" aria-label="Pilihan menu 3D, geser untuk berganti"></div>
+    <div class="stage-ui"><button class="nav-btn" id="prev" aria-label="Menu sebelumnya">‹</button>
+      <div class="cap"><h3 id="capT"></h3><p id="capD"></p><div class="dots" id="dots"></div></div>
+      <button class="nav-btn" id="next" aria-label="Menu berikutnya">›</button></div></div>
+  </header>
+  <div class="trust">
+    <div>Mentega asli<small>Tanpa pengawet dan pewarna buatan</small></div>
+    <div>Dipanggang pagi ini<small>Bukan kemarin, bukan stok gudang</small></div>
+    <div>Pesan sebelum jam 10<small>Ambil siang, masih hangat</small></div>
+  </div>
+  <aside class="board" aria-label="Jadwal keluar oven">
+      <h2>Papan oven hari ini</h2>
+      <p class="sub">Keluar dari oven pada jam</p>
+      <ul>
+        <li><b>06.00</b><span>Roti tawar dan roti sobek</span></li>
+        <li><b>08.00</b><span>Croissant dan pastry mentega</span></li>
+        <li><b>10.30</b><span>Bolu, brownies, dan kue kering</span></li>
+        <li><b>14.00</b><span>Roti isi dan donat gelombang kedua</span></li>
+      </ul>
+    </aside>
+</div>
+
+<section id="menu" style="padding-top:20px">
+  <div class="wrap">
+    <h2 class="title">Menu kami</h2>
+    <p class="lead">Pilih kategori, lalu tekan tombol keranjang. Pesananmu kami terima lewat WhatsApp.</p>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div id="state" class="state">Memuat menu dari dapur kami…</div>
+    <div class="grid" id="grid" hidden></div>
+  </div>
+</section>
+
+<section id="cerita" class="band">
+  <div class="wrap story">
+    <div>
+      <h2 class="title">Setiap roti kami ulen dengan hati.</h2>
+      <p>Semua bermula dari dapur kecil di belakang rumah, dengan satu oven tua dan resep yang diwariskan nenek. Waktu itu kami hanya membuat roti untuk tetangga. Mereka datang membawa piring, pulang membawa roti hangat, dan sering meninggalkan cerita.</p>
+      <p>Kami tidak punya rahasia besar. Hanya waktu yang tidak diburu-buru, mentega yang jujur, dan tangan yang mengulen sambil membayangkan siapa yang akan memakannya: anak yang bekal sekolahnya kami isi, bapak yang sarapan sebelum berangkat kerja, ibu yang menyiapkan kue untuk ulang tahun cucunya.</p>
+      <p>Karena itu setiap roti terasa seperti hadiah kecil. Bukan hanya karena enak, tapi karena dibuat oleh orang yang berharap harimu menyenangkan.</p>
+      <p class="sign">Dengan sayang, keluarga Kenanga</p>
+    </div>
+    <div>
+      <h3 style="font-family:var(--serif);font-size:32px;color:var(--butter);margin-bottom:18px">Sehari di dapur kami</h3>
+      <ol class="moments">
+        <li><b>03.30</b><span>Lampu dapur menyala. Tepung ditimbang dengan tangan, pelan-pelan.</span></li>
+        <li><b>04.15</b><span>Adonan diulen sampai kalis. Sambil menunggu, kami menyeduh kopi pertama.</span></li>
+        <li><b>05.30</b><span>Oven menyala dan aroma mentega mulai keluar sampai ke jalan.</span></li>
+        <li><b>06.00</b><span>Pintu dibuka. Roti pertama masih mengepul, dan kamu yang pertama mencicipinya.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="paket">
+  <div class="wrap">
+    <h2 class="title">Paket hemat, lebih puas</h2>
+    <p class="lead">Kombinasi yang paling sering dipesan. Harganya lebih ringan dibanding beli satuan.</p>
+    <div class="packs" id="packs"></div>
+  </div>
+</section>
+
+<section id="kunjungi" class="band">
+  <div class="wrap visit">
+    <div>
+      <h2 class="title">Kunjungi kami</h2>
+      <address>Jl. Contoh No. 12, Mataram<br>Nusa Tenggara Barat</address>
+      <p class="lead" style="margin-top:14px">Datang lebih pagi untuk pilihan roti terlengkap.</p>
+      <a class="btn" style="background:var(--butter);color:var(--green);border-color:var(--butter)" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Chat lewat WhatsApp</a>
+    </div>
+    <div>
+      <h3 style="font-family:var(--serif);font-size:30px">Jam buka</h3>
+      <table class="hours">
+        <tr><td>Senin sampai Jumat</td><td>06.00 – 20.00</td></tr>
+        <tr><td>Sabtu</td><td>06.00 – 21.00</td></tr>
+        <tr><td>Minggu</td><td>07.00 – 18.00</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<footer class="site">© 2026 Rumah Roti Kenanga. Dipanggang dengan sabar.</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  var box=document.getElementById('stage'); if(!window.THREE) return;
+  var T=THREE, reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var scene=new T.Scene(), cam=new T.PerspectiveCamera(36,1,.1,100);
+  cam.position.set(0,3.6,11); cam.lookAt(0,.5,0);
+  var r=new T.WebGLRenderer({antialias:true,alpha:true});
+  r.setPixelRatio(Math.min(devicePixelRatio,2)); box.appendChild(r.domElement);
+  r.domElement.style.cssText='position:relative;width:100%;height:100%;display:block';
+  scene.add(new T.AmbientLight(0xfff2cc,.8));
+  var sun=new T.DirectionalLight(0xffffff,.95); sun.position.set(4,8,6); scene.add(sun);
+  var warm=new T.PointLight(0xffb347,.7,30); warm.position.set(-5,3,4); scene.add(warm);
+  function M(c,ro,me){return new T.MeshStandardMaterial({color:c,roughness:ro==null?.6:ro,metalness:me||0})}
+  function cyl(rt,rb,h,m,y,seg){var o=new T.Mesh(new T.CylinderGeometry(rt,rb,h,seg||64),m);o.position.y=y;return o}
+  function ball(rad,m,x,y,z,sx,sy,sz){var o=new T.Mesh(new T.SphereGeometry(rad,24,18),m);o.position.set(x,y,z);o.scale.set(sx||1,sy||1,sz||1);return o}
+
+  function cake(){
+    var g=new T.Group(), sp=M(0x4A2812,.85), cr=M(0xFFF0C4,.5), gl=M(0x2A140A,.25,.1), pe=M(0xFFF6DA,.4), ch=M(0xC4122F,.2,.1);
+    g.add(cyl(2.7,2.7,.14,M(0xFFF8E0,.3),.07)); var y=.14, hs=[.5,.48,.5];
+    for(var i=0;i<3;i++){ g.add(cyl(1.9,1.9,hs[i],sp,y+hs[i]/2)); y+=hs[i]; if(i<2){g.add(cyl(1.94,1.94,.14,cr,y+.07)); y+=.14;} }
+    g.add(cyl(1.96,1.96,.12,gl,y+.06)); var top=y+.12;
+    for(var d=0;d<14;d++){ var a=d/14*Math.PI*2, L=.3+Math.abs(Math.sin(d*2.1))*.7, R=1.95, x=Math.cos(a)*R, z=Math.sin(a)*R;
+      var dr=new T.Mesh(new T.CylinderGeometry(.13,.13,L,14),gl); dr.position.set(x,top-.05-L/2,z); g.add(dr); g.add(ball(.13,gl,x,top-.05-L,z)); }
+    for(var p=0;p<28;p++){var b=p/28*Math.PI*2; g.add(ball(.12,pe,Math.cos(b)*2,.3,Math.sin(b)*2,1,.9,1));}
+    for(var q=0;q<10;q++){ var c=q/10*Math.PI*2, cx=Math.cos(c)*1.3, cz=Math.sin(c)*1.3;
+      g.add(ball(.28,cr,cx,top+.15,cz,1,.8,1)); if(q%2==0) g.add(ball(.19,ch,cx,top+.43,cz)); }
+    var cols=[0x6B3A1A,0x8A5226,0xFFD84D];
+    for(var k=0;k<22;k++){ var an=Math.random()*6.28, ra=Math.random()*.8, sh=new T.Mesh(new T.BoxGeometry(.3,.05,.1),M(cols[k%3],.5));
+      sh.position.set(Math.cos(an)*ra,top+.05,Math.sin(an)*ra); sh.rotation.set(0,Math.random()*3,Math.random()*.4); g.add(sh); }
+    g.add(ball(.28,M(0xFFD84D,.25,.35),0,top+.25,0,1,1.1,1)); return g;
+  }
+  function loaf(){
+    var g=new T.Group(), crust=M(0xB8671F,.7), crumb=M(0xFFE7A8,.9);
+    var pl=cyl(3,3,.14,M(0xFFF8E0,.3),.07,48); pl.scale.set(1,1,.7); g.add(pl);
+    var body=new T.Mesh(new T.BoxGeometry(3.2,1.1,1.7),crust); body.position.y=.7; g.add(body);
+    var dome=new T.Mesh(new T.CylinderGeometry(.85,.85,3.2,40,1,false,0,Math.PI),crust); dome.rotation.z=Math.PI/2; dome.rotation.y=0; dome.position.y=1.25; dome.scale.set(1,1,1); g.add(dome);
+    var sl=new T.Group(); sl.add(new T.Mesh(new T.BoxGeometry(.18,1.9,1.9),crust)); var fc=new T.Mesh(new T.BoxGeometry(.2,1.7,1.7),crumb); fc.position.x=.01; sl.add(fc);
+    sl.position.set(2.05,1.05,.2); sl.rotation.set(0,.15,-.12); g.add(sl);
+    for(var i=0;i<3;i++){var sc=new T.Mesh(new T.BoxGeometry(.12,.04,1.1),M(0xD99A4E,.8)); sc.position.set(-.9+i*.9,2.08,0); sc.rotation.y=.3; g.add(sc);} return g;
+  }
+  function croissant(){
+    var g=new T.Group(), n=9;
+    g.add(cyl(2.7,2.7,.14,M(0xFFF8E0,.3),.07,48));
+    for(var i=0;i<n;i++){ var t=(i/(n-1))*2-1, a=t*1.15, rad=.34+.62*Math.cos(t*Math.PI/2);
+      var o=ball(1,M(i%2?0xD38A2C:0xE5A64A,.6),Math.sin(a)*1.9,.35+rad*.55,-Math.cos(a)*1.9+1.6,rad*.9,rad*.8,rad*1.15);
+      o.rotation.y=-a; o.position.y=.3+rad*.7; g.add(o); }
+    return g;
+  }
+  function cup(){
+    var g=new T.Group(), wh=M(0xFFF8E8,.25,.05);
+    g.add(cyl(2.3,2.3,.14,wh,.07,56));
+    var c=new T.Mesh(new T.CylinderGeometry(1.15,.8,1.5,56,1,true),wh); c.position.y=.95; c.material.side=T.DoubleSide; g.add(c);
+    g.add(cyl(.8,.8,.1,wh,.2,40));
+    g.add(cyl(1.08,1.08,.04,M(0x4A2812,.3),1.6,56));
+    var art=new T.Mesh(new T.CircleGeometry(.6,40),M(0xD9A55B,.4)); art.rotation.x=-Math.PI/2; art.position.y=1.63; g.add(art);
+    var h=new T.Mesh(new T.TorusGeometry(.45,.11,14,28,Math.PI*1.2),wh); h.position.set(1.2,1,0); h.rotation.z=-Math.PI*.6; g.add(h);
+    var st=[]; for(var i=0;i<4;i++){var s=ball(.16,new T.MeshBasicMaterial({color:0xFFFFFF,transparent:true,opacity:.5}),0,2,0); s.userData.o=i/4; g.add(s); st.push(s);} g.userData.steam=st;
+    return g;
+  }
+  var models=[loaf(),cake(),croissant(),cup()], N=models.length, S=5.6;
+  models.forEach(function(m){scene.add(m)});
+  var cv=document.createElement('canvas'); cv.width=cv.height=128; var cx=cv.getContext('2d'), gr=cx.createRadialGradient(64,64,6,64,64,64);
+  gr.addColorStop(0,'rgba(58,33,18,.4)'); gr.addColorStop(1,'rgba(58,33,18,0)'); cx.fillStyle=gr; cx.fillRect(0,0,128,128);
+  var shadow=new T.Mesh(new T.PlaneGeometry(7,7),new T.MeshBasicMaterial({map:new T.CanvasTexture(cv),transparent:true,depthWrite:false}));
+  shadow.rotation.x=-Math.PI/2; shadow.position.y=-.02; scene.add(shadow);
+
+  var pos=0, target=0, drag=false, sx=0, dx=0, w=400;
+  var Stage=window.Stage={onChange:null,
+    go:function(i,silent){var cur=((target%N)+N)%N, d=i-cur; if(d>N/2)d-=N; if(d<-N/2)d+=N; target+=d; if(!silent&&Stage.onChange)Stage.onChange(((target%N)+N)%N);},
+    step:function(k){target+=k; if(Stage.onChange)Stage.onChange(((target%N)+N)%N);}};
+  box.addEventListener('pointerdown',function(e){drag=true;sx=e.clientX;dx=0;box.setPointerCapture(e.pointerId)});
+  box.addEventListener('pointermove',function(e){if(!drag)return;dx=e.clientX-sx});
+  function up(){if(!drag)return;drag=false; if(Math.abs(dx)>45) Stage.step(dx<0?1:-1); dx=0;}
+  box.addEventListener('pointerup',up); box.addEventListener('pointercancel',up);
+  box.setAttribute('tabindex','0');
+  box.addEventListener('keydown',function(e){if(e.key==='ArrowRight')Stage.step(1);if(e.key==='ArrowLeft')Stage.step(-1)});
+  function size(){w=box.clientWidth;var h=box.clientHeight;r.setSize(w,h);cam.aspect=w/h;cam.updateProjectionMatrix();cam.position.z=w<420?15:11}
+  new ResizeObserver(size).observe(box); size();
+  var vis=true, t0=0; new IntersectionObserver(function(e){vis=e[0].isIntersecting}).observe(box);
+  function loop(t){ requestAnimationFrame(loop); if(!vis)return; var dt=Math.min((t-t0)/1000,.05); t0=t;
+    var unit=2*Math.tan(18*Math.PI/180)*cam.position.z*cam.aspect, live=target-(drag?dx/w*unit/S:0);
+    pos+=(live-pos)*Math.min(1,dt*(drag?18:7));
+    models.forEach(function(m,i){ var d=(((i-pos)%N)+N)%N; if(d>N/2)d-=N; var a=Math.abs(d);
+      m.visible=a<1.8; m.position.x=d*S; m.position.y=-.9+(a<.5?Math.sin(t/800)*.06:0); var sc=Math.max(.5,1-a*.4); m.scale.setScalar(sc);
+      if(!reduce) m.rotation.y+=dt*(a<.5?.55:.2);
+      var st=m.userData.steam; if(st&&!reduce) st.forEach(function(s){var u=((t/2200)+s.userData.o)%1; s.position.set(Math.sin(u*6+s.userData.o*5)*.18,1.9+u*1.3,0); s.scale.setScalar(.7+u); s.material.opacity=.5*(1-u);});
+    });
+    r.render(scene,cam);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+<button class="fab" onclick="toggleCart()" aria-label="Buka keranjang">Keranjang <b id="cart-count">0</b></button>
+<div id="cart-modal" class="drawer" role="dialog" aria-label="Keranjang belanja">
+  <div class="panel">
+    <header><h3>Keranjang belanja</h3><button onclick="toggleCart()" aria-label="Tutup">&times;</button></header>
+    <div id="cart-items"></div>
+    <div class="total"><span>Total</span><span id="cart-total">Rp 0</span></div>
+    <form id="checkout-form" onsubmit="handleCheckout(event)">
+      <label for="cust-name">Nama lengkap</label><input id="cust-name" required placeholder="Contoh: Budi Santoso">
+      <label for="cust-phone">Nomor WhatsApp aktif</label><input id="cust-phone" type="tel" required placeholder="Contoh: 081234567890">
+      <label for="cust-address">Alamat pengiriman</label><textarea id="cust-address" rows="2" required placeholder="Jalan, nomor rumah, kelurahan, kecamatan"></textarea>
+      <button class="btn" type="submit" id="btn-submit">Pesan lewat WhatsApp</button>
+    </form>
+  </div>
+</div>
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbyfF33r6QjM3P6FvJED9JQ5W7xKDhwQdO3B9v-XihRQeyPBE-o3ueXrMCmUKeTzTBfb/exec";
+const WA_ADMIN = "6282340241721";
+const CONFIGURED = API_URL.indexOf("MASUKKAN") === -1;
+const DEMO = [
+  {id:1,nama:'Roti tawar susu',kategori:'Roti',deskripsi:'Lembut dan tahan tiga hari, cocok untuk sarapan.',harga:18000,stok:20,foto:''},
+  {id:2,nama:'Roti sobek cokelat',kategori:'Roti',deskripsi:'Disobek hangat, isian cokelat leleh.',harga:22000,stok:15,foto:''},
+  {id:3,nama:'Roti keju gurih',kategori:'Roti',deskripsi:'Taburan keju di atas, empuk di dalam.',harga:15000,stok:18,foto:''},
+  {id:4,nama:'Bolu pandan',kategori:'Kue',deskripsi:'Wangi pandan asli, tekstur lembap.',harga:35000,stok:10,foto:''},
+  {id:5,nama:'Brownies panggang',kategori:'Kue',deskripsi:'Pinggir renyah, tengah padat dan pekat.',harga:40000,stok:12,foto:''},
+  {id:6,nama:'Kue lapis legit',kategori:'Kue',deskripsi:'Dipanggang lapis demi lapis, harum rempah.',harga:85000,stok:5,foto:''},
+  {id:7,nama:'Croissant mentega',kategori:'Pastry',deskripsi:'Berlapis, renyah di luar, lembut di dalam.',harga:20000,stok:16,foto:''},
+  {id:8,nama:'Pain au chocolat',kategori:'Pastry',deskripsi:'Dua batang cokelat dalam lipatan mentega.',harga:24000,stok:12,foto:''},
+  {id:9,nama:'Pai apel kayu manis',kategori:'Pastry',deskripsi:'Apel dimasak pelan dengan kayu manis.',harga:26000,stok:8,foto:''},
+  {id:10,nama:'Kopi susu',kategori:'Minuman',deskripsi:'Kopi lokal dengan susu segar.',harga:18000,stok:30,foto:''},
+  {id:11,nama:'Teh melati panas',kategori:'Minuman',deskripsi:'Diseduh per cangkir.',harga:10000,stok:30,foto:''},
+  {id:12,nama:'Cokelat hangat',kategori:'Minuman',deskripsi:'Kental dan tidak terlalu manis.',harga:20000,stok:25,foto:''}
+];
+const PACKS = [
+  {id:'paket-1',nama:'Paket sarapan',deskripsi:'Roti tawar susu dan dua kopi susu untuk memulai pagi.',normal:54000,harga:52000},
+  {id:'paket-2',nama:'Paket arisan',deskripsi:'Brownies panggang, bolu pandan, dan empat teh melati untuk ngobrol lama.',normal:115000,harga:105000},
+  {id:'paket-3',nama:'Paket hadiah',deskripsi:'Kue lapis legit dan dua croissant mentega, siap dibawa sebagai buah tangan.',normal:125000,harga:115000}
+];
+const CAPS = ['Empuk, wangi, dan tahan sampai hari ketiga.','Manis yang pas untuk meja keluarga dan hari spesial.','Berlapis mentega, renyah di setiap gigitan.','Teman terbaik untuk roti yang masih hangat.'];
+let products = [], cart = [], cats = [], current = '';
+const $ = id => document.getElementById(id);
+const rp = n => 'Rp ' + Number(n || 0).toLocaleString('id-ID');
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function modelOf(c, i){
+  c = c.toLowerCase();
+  if(/roti|bread|tawar/.test(c)) return 0;
+  if(/kue|cake|bolu|brownies/.test(c)) return 1;
+  if(/pastry|croissant|pai/.test(c)) return 2;
+  if(/minum|kopi|teh|drink/.test(c)) return 3;
+  return i % 4;
+}
+async function loadProducts(){
+  $('state').hidden = false; $('state').textContent = 'Memuat menu dari dapur kami…'; $('grid').hidden = true;
+  try{
+    if(CONFIGURED){ const res = await fetch(API_URL); const json = await res.json(); products = json.data || []; }
+    else { products = DEMO; }
+    cats = products.map(p => p.kategori || 'Umum').filter((c,i,a) => a.indexOf(c) === i);
+    current = cats[0] || '';
+    renderTabs(); renderProducts(); sync();
+  }catch(err){
+    $('state').innerHTML = 'Menu belum bisa dimuat. <button class="btn sm" onclick="loadProducts()">Coba lagi</button>';
+  }
+}
+function renderTabs(){
+  const t = $('tabs'); t.innerHTML = '';
+  cats.forEach((c,i) => {
+    const b = document.createElement('button');
+    b.className = 'tab'; b.textContent = c; b.setAttribute('role','tab'); b.setAttribute('aria-selected', c === current);
+    b.onclick = () => { current = c; renderTabs(); renderProducts(); sync(); if(window.Stage) Stage.go(modelOf(c,i), true); };
+    t.appendChild(b);
+  });
+}
+function renderProducts(){
+  const list = products.filter(p => (p.kategori || 'Umum') === current), g = $('grid');
+  g.innerHTML = list.map(p => {
+    const hasStok = p.stok !== '' && p.stok != null, habis = hasStok && Number(p.stok) <= 0;
+    const media = p.foto ? '<img class="ph" loading="lazy" src="' + esc(p.foto) + '" alt="' + esc(p.nama) + '">' : '<div class="ph none">' + esc(String(p.nama).charAt(0)) + '</div>';
+    return '<article class="card">' + media + '<div class="body"><span class="badge">' + esc(p.kategori || 'Umum') + '</span><h3>' + esc(p.nama) + '</h3><p>' + esc(p.deskripsi) + '</p>' +
+      (hasStok ? '<span class="stok">Sisa stok: <b>' + esc(p.stok) + '</b></span>' : '') +
+      '<div class="row"><span class="price">' + rp(p.harga) + '</span><button class="btn sm" data-id="' + esc(p.id) + '"' + (habis ? ' disabled>Habis' : '>+ Keranjang') + '</button></div></div></article>';
+  }).join('');
+  g.querySelectorAll('img.ph').forEach(im => im.onerror = () => { const d = document.createElement('div'); d.className = 'ph none'; d.textContent = im.alt.charAt(0); im.replaceWith(d); });
+  g.querySelectorAll('button[data-id]').forEach(b => b.onclick = () => addToCart(b.dataset.id));
+  $('state').hidden = true; g.hidden = false;
+}
+function sync(){
+  const i = cats.indexOf(current), m = modelOf(current || '', Math.max(i,0));
+  $('capT').textContent = current;
+  const lo = Math.min.apply(null, products.filter(p => (p.kategori || 'Umum') === current).map(p => Number(p.harga)));
+  $('capD').textContent = CAPS[m] + (isFinite(lo) ? ' Mulai ' + rp(lo) + '.' : '');
+  $('dots').innerHTML = [0,1,2,3].map(k => '<i class="' + (k === m ? 'on' : '') + '"></i>').join('');
+}
+function addItem(item){
+  const ex = cart.find(c => String(c.id) === String(item.id)), max = item.stok !== '' && item.stok != null && !isNaN(item.stok) ? Number(item.stok) : Infinity;
+  if(ex){ if(ex.qty >= max) return alert('Stok ' + item.nama + ' tinggal ' + max + '.'); ex.qty++; } else cart.push({id:item.id,nama:item.nama,harga:Number(item.harga),stok:item.stok,qty:1});
+  updateCartUI();
+}
+function addToCart(id){ const p = products.find(x => String(x.id) === String(id)); if(p) addItem(p); }
+function updateCartUI(){
+  $('cart-count').textContent = cart.reduce((a,i) => a + i.qty, 0);
+  const box = $('cart-items'); let total = 0;
+  box.innerHTML = cart.length ? '' : '<p class="state" style="padding:24px 0">Keranjangmu masih kosong. Pilih roti kesukaanmu dulu.</p>';
+  cart.forEach((it,idx) => {
+    total += it.harga * it.qty;
+    box.insertAdjacentHTML('beforeend', '<div class="ci"><div><b>' + esc(it.nama) + '</b><small>' + rp(it.harga) + ' x ' + it.qty + '</small></div><div class="q"><button data-d="-1" data-i="' + idx + '" aria-label="Kurangi">−</button><span>' + it.qty + '</span><button data-d="1" data-i="' + idx + '" aria-label="Tambah">+</button></div></div>');
+  });
+  box.querySelectorAll('.q button').forEach(b => b.onclick = () => {
+    const it = cart[b.dataset.i], d = +b.dataset.d;
+    if(d > 0 && it.stok !== '' && it.stok != null && !isNaN(it.stok) && it.qty >= Number(it.stok)) return alert('Stok ' + it.nama + ' tinggal ' + it.stok + '.');
+    it.qty += d; if(it.qty <= 0) cart.splice(b.dataset.i, 1); updateCartUI();
+  });
+  $('cart-total').textContent = rp(total);
+}
+function toggleCart(){ $('cart-modal').classList.toggle('open'); }
+async function handleCheckout(e){
+  e.preventDefault();
+  if(!cart.length) return alert('Keranjang belanjamu masih kosong!');
+  const btn = $('btn-submit'); btn.textContent = 'Mencatat pesanan…'; btn.disabled = true;
+  const inv = 'INV-' + Date.now().toString().slice(-6);
+  const payload = {nama:$('cust-name').value, whatsapp:$('cust-phone').value, alamat:$('cust-address').value, items:cart, total:cart.reduce((a,i) => a + i.harga * i.qty, 0)};
+  try{
+    if(CONFIGURED) fetch(API_URL, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body:JSON.stringify(payload)});
+    let t = 'Halo Admin, saya ingin konfirmasi pesanan:\n\n';
+    t += '🧾 *Invoice: ' + inv + '*\n👤 *Nama:* ' + payload.nama + '\n📱 *No. WA:* ' + payload.whatsapp + '\n📍 *Alamat:* ' + payload.alamat + '\n\n🛍️ *Daftar Belanja:*\n';
+    payload.items.forEach(i => { t += '• ' + i.nama + ' (' + i.qty + 'x) = ' + rp(i.harga * i.qty) + '\n'; });
+    t += '\n💰 *Total Pembayaran: ' + rp(payload.total) + '*\n\nMohon info nomor rekening dan total ongkirnya. Terima kasih!';
+    window.open('https://wa.me/' + WA_ADMIN + '?text=' + encodeURIComponent(t), '_blank');
+    cart = []; updateCartUI(); toggleCart(); e.target.reset();
+  }catch(err){ alert('Gagal memproses pesanan. Silakan coba kembali.'); }
+  finally{ btn.textContent = 'Pesan lewat WhatsApp'; btn.disabled = false; }
+}
+$('packs').innerHTML = PACKS.map((p,i) => '<div class="pack"><h3>' + p.nama + '</h3><p>' + p.deskripsi + '</p><div><span class="was">' + rp(p.normal) + '</span><div class="now">' + rp(p.harga) + '</div></div><button class="btn" data-i="' + i + '">Tambah paket</button></div>').join('');
+document.querySelectorAll('.pack .btn').forEach(b => b.onclick = () => { addItem(PACKS[b.dataset.i]); toggleCart(); });
+$('cart-modal').addEventListener('click', e => { if(e.target.id === 'cart-modal') toggleCart(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && $('cart-modal').classList.contains('open')) toggleCart(); });
+$('prev').onclick = () => window.Stage && Stage.step(-1);
+$('next').onclick = () => window.Stage && Stage.step(1);
+if(window.Stage){ Stage.onChange = m => { const i = cats.findIndex((c,k) => modelOf(c,k) === m); if(i > -1){ current = cats[i]; renderTabs(); renderProducts(); } sync(); }; }
+updateCartUI(); loadProducts();
+</script>
+</body>
+</html>
